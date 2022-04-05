@@ -102,7 +102,7 @@ module.exports = {
             healt: 400,
             level: 0,
             exp: 0,
-            limit: 40,
+            limit: 20,
             lastclaim: 0,
             money: 0,
             diamond: 0,

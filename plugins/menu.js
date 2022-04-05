@@ -31,8 +31,14 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-╭─「 %me 」
+╭─「 ${namabot} 」
 │ %ucapan, *%name!*
+│
+│ Tersisa: *%limit Limit*
+│ Level: *%level (%exp / %maxexp)* 
+│ Role: *%role*
+│ [%xp4levelup]
+│ %totalexp XP secara Total
 │
 │ Tanggal: *%week , %date*
 │ Waktu: *%time*
@@ -40,8 +46,6 @@ const defaultMenu = {
 │ Uptime: *%uptime (%muptime)*
 │ Database: *%rtotalreg of %totalreg*
 │
-│ Github: 
-│ %github
 ╰────
 %readmore`.trimStart(),
   header: '╭─「 %category 」',
@@ -138,13 +142,51 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       npmname: package.name,
       npmdesc: package.description,
       version: package.version,
-      github: package.homepage ? package.homepage.url || package.homepage : '[https://github.com/sylviaadrastea/games-wabot]',
-      name, weton, week, date, dateIslamic, time, totalreg, rtotalreg,
+      exp: exp - min,
+      maxexp: xp,
+      totalexp: exp,
+      xp4levelup: max - exp,
+      github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
+      level, limit, money, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     let pp = await conn.getProfilePicture(conn.user.jid).catch(_ => path.join(__dirname, '../src/avatar_contact.png'))
     conn.sendButton(m.chat,text.trim(), author,  pp,  [
+           hydratedTemplate: {
+           hydratedContentText: text.trim(),
+           locationMessage: { 
+           jpegThumbnail: await (await fetch(fla + command)).buffer() },
+           hydratedFooterText: wm,
+           hydratedButtons: [{
+             urlButton: {
+               displayText: 'source code',
+               url: `${ApiiKey}`
+             }
+
+           },
+             {
+             callButton: {
+               displayText: '𝚙𝚑𝚘𝚗𝚎 𝚗𝚞𝚖𝚋𝚎𝚛',
+               PhoneNumber: '6281292682484'
+             }
+
+           },
+               {
+             quickReplyButton: {
+               displayText: '𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁',
+               id: '.owner',
+             }
+           }]
+         }
+       }
+     }), { userJid: m.sender, quoted: m });
+    //conn.reply(m.chat, text.trim(), m)
+    return await conn.relayMessage(
+         m.chat,
+         template.message,
+         { messageId: template.key.id }
+     )
   ['Info', '/info'],
   ['Ping',  '/ping'],
   ['Owner',  '/owner']

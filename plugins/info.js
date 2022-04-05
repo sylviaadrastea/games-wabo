@@ -22,9 +22,6 @@ let handler  = async (m, { conn, usedPrefix }) => {
 ║
 ║
 ╠═ Request? ${package.bugs.url}
-╠═ Official Group *${conn.user.name}* :
-${(global.linkGC).map((v, i) => '║ *Group ' + (i + 1) + '*\n║' + v).join`\n║\n`}
-║
 ║${readMore}
 ╠═〘 SYARAT & KETENTUAN XIABOT 〙 ═
 ╠➥ *KAMI TIDAK BERTANGGUNG*
@@ -39,8 +36,7 @@ ${(global.linkGC).map((v, i) => '║ *Group ' + (i + 1) + '*\n║' + v).join`\n�
 ║ 
 ║ 
 ╠═ ©2022 ${package.name}
-╠═ Script original by Sylbot
-╠═〘 XIABOT 〙 ═
+╠═〘 sylbot-md 〙 ═
 `.trim(), m)
 }
 handler.help = ['info']

@@ -26,16 +26,16 @@
     "Games-wabot",
     "wabot-aq"
   ],
-  "homepage": "https://github.com/sylviaadrastea/games-wabot",
+  "homepage": "https://github.com/sylviaadrastea/games-wabo",
   "author": {
     "name": "BochilGaming"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sylviaadrastea/games-wabot.git"
+    "url": "git+https://github.com/sylviaadrastea/games-wabo.git"
   },
   "bugs": {
-    "url": "https://github.com/sylviaadrastea/games-wabot/issues"
+    "url": "https://github.com/sylviaadrastea/games-wabo/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
